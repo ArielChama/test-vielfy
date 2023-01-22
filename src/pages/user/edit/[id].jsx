@@ -27,8 +27,8 @@ const editUSer = () => {
     fetchAllData()
   }, [api])
 
-  const [name, setName] = useState(user.name)
-  const [email, setEmail] = useState()
+  const [name, setName] = useState(user.name || "")
+  const [email, setEmail] = useState(user.email || "")
   const [gender, setGender] = useState()
   const [state, setState] = useState()
 
@@ -63,11 +63,12 @@ const editUSer = () => {
           <div className="d-flex justify-content-center py-5">
             <div className="card">
               <div className="card-body">
+                  <h3 className="card-title mb-4">Editando o usuário "{user.name}"</h3>
                   <label htmlFor="">Nome:</label>
-                  <input type="text" value={user.name} className="form-control mb-3" onChange={(event) => setName(event.target.value)}  />
+                  <input type="text" value={name} className="form-control mb-3" onChange={(event) => setName(event.target.value)}  />
 
                   <label htmlFor="">Email:</label>
-                  <input type="email" className="form-control mb-3" onChange={(event) => setEmail(event.target.value)}  />
+                  <input type="email" value={email} className="form-control mb-3" onChange={(event) => setEmail(event.target.value)}  />
 
                   <label htmlFor="">Género:</label>
                   <select className="form-control mb-3" onClick={(event) => setGender(event.target.value)}>

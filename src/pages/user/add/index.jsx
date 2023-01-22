@@ -36,6 +36,8 @@ const add = () => {
           <div className="d-flex justify-content-center py-5">
             <div className="card">
               <div className="card-body">
+                <h3 className="card-title mb-4">Adicionando novo usuário</h3>
+
                 <label htmlFor="">Nome:</label>
                 <input type="text" className="form-control mb-3" onChange={(event) => setName(event.target.value)} />
 
