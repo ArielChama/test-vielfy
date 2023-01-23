@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
+import Menu from '../../components/Menu';
 import HEAD from "./../../components/Header";
 
 const index = () => {
-  const [data, setData] = useState(null)
+  const [data, setData] = useState([])
   const token = '1a609420bad3a81219bf0535530fd16c3f7bea269068c991ba6f0f094c0916ca'
 
   const fetchAllData = async () => {
@@ -43,17 +44,7 @@ const index = () => {
       <>
         <HEAD title="Teste Vielfy - Listagem" />
 
-        <header>
-          <nav className="navbar bg-light">
-            <div className="container">
-              <a className="navbar-brand">Teste Vielfy</a>
-
-              <a href="/user/add" className="btn btn-primary m-2">
-                Adicionar
-              </a>
-            </div>
-          </nav>
-        </header>
+        <Menu />
 
         <section>
           <div className="container">
@@ -82,7 +73,7 @@ const index = () => {
                             <td>{email}</td>
                             <td>{status}</td>
                             <td>
-                              <a href={`/user/edit/${id}`} className="btn btn-warning mx-1  " onClick={() => deleteUser(id)}>
+                              <a href={`/user/edit/${id}`} className="btn btn-warning mx-1  ">
                                 <i class="bi bi-pencil"></i>
                               </a>
 

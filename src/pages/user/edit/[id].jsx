@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import HEAD from "./../../../components/Header";
+import Menu from '../../../components/Menu';
 
 const editUSer = () => {
   const router = useRouter()
@@ -30,12 +31,12 @@ const editUSer = () => {
   const [name, setName] = useState(user.name || "")
   const [email, setEmail] = useState(user.email || "")
   const [gender, setGender] = useState()
-  const [state, setState] = useState()
+  const [status, setStatus] = useState()
 
   const updateUser = () => {
     fetch(api, {
       method: 'PUT',
-      body: JSON.stringify({ name: name, email: email, gender: gender, status: state }),
+      body: JSON.stringify({ name, email, gender, status }),
       headers: {
         'content-type': 'application/json',
         'accept': 'application/json',
@@ -47,46 +48,44 @@ const editUSer = () => {
         window.location = "/"
       } else {
         alert("Não foi possível atualizar")
-        console.log(response)
       }
     })
   }
-
-  console.log(user)
-
   return (
     <>
       <HEAD title="Teste Vielfy - Editar usuário" />
+
+      <Menu />
 
       <section>
         <div className="container">
           <div className="d-flex justify-content-center py-5">
             <div className="card">
               <div className="card-body">
-                  <h3 className="card-title mb-4">Editando o usuário "{user.name}"</h3>
-                  <label htmlFor="">Nome:</label>
-                  <input type="text" value={name} className="form-control mb-3" onChange={(event) => setName(event.target.value)}  />
+                <h3 className="card-title mb-4">Editando o usuário "{user.name}"</h3>
+                <label>Nome:</label>
+                <input type="text" value={name} className="form-control mb-3" onChange={(event) => setName(event.target.value)} />
 
-                  <label htmlFor="">Email:</label>
-                  <input type="email" value={email} className="form-control mb-3" onChange={(event) => setEmail(event.target.value)}  />
+                <label>Email:</label>
+                <input type="email" value={email} className="form-control mb-3" onChange={(event) => setEmail(event.target.value)} />
 
-                  <label htmlFor="">Género:</label>
-                  <select className="form-control mb-3" onClick={(event) => setGender(event.target.value)}>
-                    <option value="">Escolha uma opção</option>
-                    <option value="male">Masculino</option>
-                    <option value="female">Feminino</option>
-                  </select>
+                <label>Género:</label>
+                <select className="form-control mb-3" onClick={(event) => setGender(event.target.value)}>
+                  <option value="">Escolha uma opção</option>
+                  <option value="male">Masculino</option>
+                  <option value="female">Feminino</option>
+                </select>
 
-                  <label htmlFor="">Estado</label>
-                  <select className="form-control mb-3" onClick={(event) => setState(event.target.value)}>
-                    <option value="">Escolha uma opção</option>
-                    <option value="active">Activo</option>
-                    <option value="inactive">Inativo</option>
-                  </select>
+                <label>Estado</label>
+                <select className="form-control mb-3" onClick={(event) => setStatus(event.target.value)}>
+                  <option value="">Escolha uma opção</option>
+                  <option value="active">Activo</option>
+                  <option value="inactive">Inativo</option>
+                </select>
 
-                  <button type="button" className="btn btn-primary" onClick={updateUser}>
-                    Editar
-                  </button>
+                <button type="button" className="btn btn-primary" onClick={updateUser}>
+                  Editar
+                </button>
               </div>
             </div>
           </div>
