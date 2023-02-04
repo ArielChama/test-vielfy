@@ -1,11 +1,11 @@
-import Link from 'next/link';
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import Menu from '../../components/Menu';
-import HEAD from "./../../components/Header";
+import Menu from '../../components/Menu'
+import HEAD from "./../../components/Header"
+import deleteUser from './../../components/Requests/DeleteUser'
 
 const index = () => {
   const [data, setData] = useState([])
-  const token = '1a609420bad3a81219bf0535530fd16c3f7bea269068c991ba6f0f094c0916ca'
 
   const fetchAllData = async () => {
     try {
@@ -25,24 +25,13 @@ const index = () => {
     fetchAllData()
   }, [])
 
-  const deleteUser = (id) => {
-    fetch(`https://gorest.co.in/public/v2/users/${id}`, {
-      method: 'DELETE',
-      headers: new Headers({
-        'Authorization': 'Bearer ' + token,
-      }),
-    }).then(response => {
-      if (response.ok) {
-        fetchAllData()
-        alert("Apagado")
-      }
-    })
-  }
+  console.log(data)
+
 
   if (data)
     return (
       <>
-        <HEAD title="Teste Vielfy - Listagem" />
+        <HEAD title="Listagem" />
 
         <Menu />
 

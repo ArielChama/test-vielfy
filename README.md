@@ -1,4 +1,4 @@
-Teste de admissão para Vielfy, construido com Nextjs.
+CRUD (Create, Read, Update and Delete) construido com Nextjs.
 
 ## Getting Started
 

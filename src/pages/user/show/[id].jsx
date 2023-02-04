@@ -1,53 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useRouter } from 'next/router'
-import HEAD from "./../../../components/Header";
+import HEAD from "./../../../components/Header"
 import Menu from "../../../components/Menu"
+import deleteUser from '../../../components/Requests/DeleteUser'
+import getUser from './../../../components/Requests/getUser'
 
 const showUser = () => {
+  const [data, setData] = React.useState({})
   const router = useRouter()
   const { id } = router.query
-  const token = '1a609420bad3a81219bf0535530fd16c3f7bea269068c991ba6f0f094c0916ca'
 
-  const [data, setData] = useState({})
-  const api = `https://gorest.co.in/public/v2/users/${id}`
-
-  const fetchAllData = async () => {
-    try {
-      const response = await fetch(api)
-      const data = await response.json()
-
-      if (!data)
-        throw 'Problema na requisição'
-
-      setData(data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    fetchAllData()
-  }, [api])
-
-  const deleteUser = (id) => {
-    fetch(`https://gorest.co.in/public/v2/users/${id}`, {
-      method: 'DELETE',
-      headers: new Headers({
-        'Authorization': 'Bearer ' + token,
-      }),
-    }).then(response => {
-      if (response.ok) {
-        fetchAllData()
-        alert("Apagado")
-        window.location = "/"
-      }
-    })
-  }
+  React.useEffect(() => {
+    getUser(id, data, setData)
+  })
 
   if (data)
     return (
       <>
-        <HEAD title={`Teste Vielfy - ${data.name}`} />
+        <HEAD title={data.name} />
 
         <Menu />
 
@@ -63,7 +33,7 @@ const showUser = () => {
                 <p>Estado: {data.status}</p>
 
                 <div>
-                  <a href={`/user/edit/${data.id}`} className="btn btn-warning mx-1  " onClick={() => deleteUser(id)}>
+                  <a href={`/user/edit/${data.id}`} className="btn btn-warning mx-1">
                     Editar
                   </a>
 

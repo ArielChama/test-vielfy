@@ -5,7 +5,7 @@ const Menu = () => {
     <header>
       <nav className="navbar bg-light">
         <div className="container">
-          <a className="navbar-brand">Teste Vielfy</a>
+          <a className="navbar-brand">CRUD</a>
 
           <a href="/user/add" className="btn btn-primary m-2">
             Adicionar

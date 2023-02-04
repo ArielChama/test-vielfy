@@ -1,6 +1,8 @@
 import React from 'react'
-import Menu from '../../../components/Menu';
-import HEAD from "./../../../components/Header";
+import Menu from '../../../components/Menu'
+import HEAD from "./../../../components/Header"
+import postUser from '../../../components/Requests/postUser'
+
 
 const add = () => {
   const [name, setName] = React.useState()
@@ -8,28 +10,13 @@ const add = () => {
   const [gender, setGender] = React.useState()
   const [status, setStatus] = React.useState()
 
-  const createUser = (data) => {
-    fetch(`https://gorest.co.in/public/v2/users/`, {
-      method: 'POST',
-      body: JSON.stringify({ name, email, gender, status }),
-      headers: {
-        'content-type': 'application/json',
-        'accept': 'application/json',
-        'Authorization': 'Bearer 1a609420bad3a81219bf0535530fd16c3f7bea269068c991ba6f0f094c0916ca',
-      },
-    }).then(response => {
-      if (response.ok) {
-        alert("Adicionado com sucesso")
-        window.location = "/user/add"
-      } else {
-        alert("Não foi possível adicionar")
-      }
-    })
+  const createUser = () => {
+    postUser(name, email, gender, status)
   }
 
   return (
     <>
-      <HEAD title="Teste Vielfy - Cadastrar novo usuário" />
+      <HEAD title="Cadastrar novo usuário" />
 
       <Menu />
 
